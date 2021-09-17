@@ -3,10 +3,12 @@ const fs = require("fs");
 let inputString = "";
 let currentLine = 0;
 let outputPath = "";
+let answer = "";
 
 function start(input, output) {
   currentLine = 0;
   outputPath = output;
+  answer = "";
   inputString = input
     .replace(/\s*$/, "")
     .split("\n")
@@ -46,17 +48,16 @@ const SinglyLinkedList = class {
   }
 };
 
-function printSinglyLinkedList(node) {
-  let result = "";
+function printSinglyLinkedList(node, sep) {
   while (node != null) {
-    result += node.data;
+    answer += String(node.data);
+
     node = node.next;
 
     if (node != null) {
-      result += " ";
+      answer += sep;
     }
   }
-  return result;
 }
 
 /*
@@ -110,8 +111,7 @@ function main() {
   const position = parseInt(readLine(), 10);
 
   let llist_head = insertNodeAtPosition(llist.head, data, position);
-
-  return printSinglyLinkedList(llist_head);
+  printSinglyLinkedList(llist_head, " ");
+  answer += "\n";
+  fs.writeFileSync(outputPath,answer);
 }
-
-

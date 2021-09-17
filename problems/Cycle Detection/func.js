@@ -3,10 +3,12 @@ const fs = require("fs");
 let inputString = "";
 let currentLine = 0;
 let outputPath = "";
+let answer = "";
 
 function start(input, output) {
   currentLine = 0;
   outputPath = output;
+  answer = "";
   inputString = input
     .replace(/\s*$/, "")
     .split("\n")
@@ -80,8 +82,6 @@ function hasCycle(head) {
 }
 
 function main() {
-  const ws = fs.createWriteStream(outputPath);
-
   const tests = parseInt(readLine(), 10);
 
   for (let testsItr = 0; testsItr < tests; testsItr++) {
@@ -112,10 +112,7 @@ function main() {
     temp.next = extra;
 
     let result = hasCycle(llist.head);
-
-    ws.write((result ? 1 : 0) + "\n");
+    answer += (result ? 1 : 0) + "\n";
+    fs.writeFileSync(outputPath, answer);
   }
-
-  ws.end();
-  ws.close()
 }
