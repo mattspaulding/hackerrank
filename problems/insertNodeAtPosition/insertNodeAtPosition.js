@@ -1,6 +1,15 @@
-
 let inputString = "";
 let currentLine = 0;
+
+function start(input) {
+  currentLine = 0;
+  inputString = input
+    .replace(/\s*$/, "")
+    .split("\n")
+    .map((str) => str.replace(/\s*$/, ""));
+
+ return main();
+}
 
 function readLine() {
   return inputString[currentLine++];
@@ -81,12 +90,7 @@ function insertNodeAtPosition(llist, data, position) {
   }
 }
 
-function main(input) {
-  inputString = input
-    .replace(/\s*$/, "")
-    .split("\n")
-    .map((str) => str.replace(/\s*$/, ""));
-
+function main() {
   const llistCount = parseInt(readLine(), 10);
 
   let llist = new SinglyLinkedList();
@@ -105,4 +109,4 @@ function main(input) {
   return printSinglyLinkedList(llist_head);
 }
 
-module.exports = main;
+module.exports = start;
