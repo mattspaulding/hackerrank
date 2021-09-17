@@ -1,15 +1,20 @@
+const fs = require("fs");
+
 let inputString = "";
 let currentLine = 0;
+let outputPath = "";
 
-function start(input) {
+function start(input, output) {
   currentLine = 0;
+  outputPath = output;
   inputString = input
     .replace(/\s*$/, "")
     .split("\n")
     .map((str) => str.replace(/\s*$/, ""));
 
- return main();
+  main();
 }
+module.exports = start;
 
 function readLine() {
   return inputString[currentLine++];
@@ -109,4 +114,4 @@ function main() {
   return printSinglyLinkedList(llist_head);
 }
 
-module.exports = start;
+
